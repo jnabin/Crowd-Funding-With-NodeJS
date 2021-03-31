@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donate</title>
+</head>
+<body>
+    <a href="/home">Back</a> | 
+    <a href="/logout">logout</a> 
+    <% if(typeof(msg) != 'undefined') { %>
+        <% if(msg.length > 0) { %>
+            <% msg.forEach(function(error) { %>
+            <p style="color:red"><%= error.msg %></p>
+            <%})%>
+             <% } %>
+            <% } %>
+    <form method="post">
+        <fieldset>
+            <legend>Donate to Compaign</legend>
+            <table>
+                <tr>
+                    <td>Campaign id: </td>
+                    <td><%= data.cid %></td>
+                </tr>
+                <tr>
+                    <td>User id: </td>
+                    <td><%= data.uid %></td>
+                </tr>
+                <tr>
+                    <td>Campaign title: </td>
+                    <td><%= data.title %></td>
+                </tr>
+                <tr>
+                    <td>Amount : </td>
+                    <td><input type="text" name="amount"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
+</html>

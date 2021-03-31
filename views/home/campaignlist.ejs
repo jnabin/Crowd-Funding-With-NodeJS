@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User List</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Organization</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    	<li class="nav-item">
+        <a class="nav-link" href = "/home">Home</span></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href = "/organization/create">Create Campaign </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href = "/home">Campaign list <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "/home/bookmarkslist">Bookmarks list</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href ="/logout">logout</a>
+      </li>
+    </ul>
+  </div>
+</nav> 
+	<br>
+	<div>
+		<%= typeof msg != 'undefined' ? msg : '' %>
+	</div>
+
+
+
+	<div class="row">
+		<% 
+			users.forEach( function(std){ %>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/organization/view/<%= std.id %>/<%= std.uid %>/<%= std.target_fund %>/<%= std.raised_fund %>/<%= std.ctype %>/<%= std.description %>/<%= std.image %>/<%= std.publisedDate %>/<%= std.endDate %>/<%= std.title %>"><%= std.title %></a></h5>
+        <p class="card-text"><%= std.description %></p>
+        <a href="/organization/edit/<%= std.id %>/<%= std.target_fund %>/<%= std.ctype %>/<%= std.description %>/<%= std.image %>/<%= std.endDate %>/<%= std.title %>">Edit</a> |
+					<a href="/organization/delete/<%= std.id %>/<%= std.uid %>/<%= std.target_fund %>/<%= std.raised_fund %>/<%= std.ctype %>/<%= std.description %>/<%= std.image %>/<%= std.publisedDate %>/<%= std.endDate %>/<%= std.status %>/<%= std.title %>">Delete</a>|
+					<a href="/organization/report/<%= std.id %>/<%= std.uid %>">Report</a>|
+					<a href="/organization/bookmark/<%= std.id %>/<%= std.uid %>">Bookmark</a> | 
+					<a href="/organization/donate/<%= std.id %>/<%= std.uid %>/<%= std.title %>">Donate</a>
+      </div>
+    </div>
+  </div>
+  <%
+			}); 
+		%>
+</div>
+
+
+	<!-- <table border="1">
+		<tr>
+			<td>ID</td>
+			<td>UID</td>
+			<td>Target Fund</td>
+			<td>Raised Fund</td>
+			<td>Campaign Type</td>
+			<td>Description</td>
+			<td>Image</td>
+			<td>Publish Date</td>
+			<td>End Date</td>
+			<td>Status</td>
+			<td>Title</td>
+			<td>Action</td>
+		</tr>
+
+		<% 
+			users.forEach( function(std){ %>
+			<tr>
+				<td><%= std.id %></td>
+				<td><%= std.uid %></td>
+				<td><%= std.target_fund %></td>
+				<td><%= std.raised_fund %></td>
+				<td><%= std.ctype %></td>
+				<td><%= std.description %></td>
+				<td><%= std.image %></td>
+				<td><%= std.publisedDate %></td>
+				<td><%= std.endDate %></td>
+				<% if (std.status ==0) { %>
+				<td> not approved!</td>
+				<%} else if(std.status == 1) { %>
+				<td> approved </td>
+				<% }else{%>
+				<td>block</td> <%} %>
+				<td><%= std.title %></td>
+				<td>
+					<a href="/organization/edit/<%= std.id %>/<%= std.target_fund %>/<%= std.raised_fund %>/<%= std.ctype %>/<%= std.description %>/<%= std.image %>/<%= std.endDate %>/<%= std.title %>">Edit</a> |
+					<a href="/organization/delete/<%= std.id %>/<%= std.uid %>/<%= std.target_fund %>/<%= std.raised_fund %>/<%= std.ctype %>/<%= std.description %>/<%= std.image %>/<%= std.publisedDate %>/<%= std.endDate %>/<%= std.status %>/<%= std.title %>">Delete</a>|
+					<a href="/organization/report/<%= std.id %>/<%= std.uid %>">Report</a>|
+					<a href="/organization/bookmark/<%= std.id %>/<%= std.uid %>">Bookmark</a>
+				</td>
+			</tr>
+		<%
+			}); 
+		%>
+		
+	</table> -->
+
+</body>
+</html>
